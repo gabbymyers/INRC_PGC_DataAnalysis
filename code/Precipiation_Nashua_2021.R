@@ -48,6 +48,14 @@ merged_data<- merge(year_2021_cumul_only,day_avg_small, by = "day")
 
 
 #Interactive figure with a line for average and a line for 2021
+m <- list(
+  l = 50,
+  r = 50,
+  b = 50,
+  t = 50,
+  pad = 4
+)
+
 fig <- plot_ly(merged_data, x = ~day, y = ~avg_cumulative_rain, name = '1991-2021 avg', type = 'scatter', mode = 'lines') 
 fig <- fig %>% add_trace(y = ~cumulative_rain_2021, name = '2021', mode = 'lines') 
 
@@ -55,6 +63,7 @@ fig <- fig %>% add_trace(y = ~cumulative_rain_2021, name = '2021', mode = 'lines
 fig
 
 fig <- fig%>%
+  layout(margin = m)%>%
   layout(title = 'Nashua Rainfall Summary', font=list(size = 18)) %>%
   layout(xaxis = list(title = 'Day of Year'), yaxis = list(title = 'Rainfall (mm)')) %>%
   layout( xaxis = list(titlefont = list(size = 15), tickfont = list(size = 12)),
